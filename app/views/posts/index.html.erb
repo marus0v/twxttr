@@ -1,10 +1,14 @@
 <h1>Posts</h1>
 
+TWXTTR has <%= Post.public_count %> posts and counting!
+
 <ul>
   <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post %>
-    </li>
+    <% unless post.archived? %>
+      <li>
+        <%= link_to post.title, post %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 
