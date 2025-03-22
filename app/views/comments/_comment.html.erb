@@ -8,5 +8,8 @@
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
+  <p>
+    <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+  </p>
   <br>
 <% end %>
