@@ -28,6 +28,12 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+# Use BCrypt
+gem "bcrypt"
+
+# Use AuthLogic for Rails.cache, Active Job, and Action Cable
+# gem "authlogic", "~> 6.3.0"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
