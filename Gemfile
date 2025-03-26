@@ -29,7 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 # Use BCrypt
-gem "bcrypt"
+gem "bcrypt", "~> 3.1.7" # , require: "bcrypt"
 
 # Use AuthLogic for Rails.cache, Active Job, and Action Cable
 # gem "authlogic", "~> 6.3.0"
