@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy ]
 
   resources :posts do
-    resources :comments
+    resources :comments, only: [ :create, :edit, :update, :destroy ]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
