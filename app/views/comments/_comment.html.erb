@@ -13,3 +13,13 @@
   </p>
   <br>
 <% end %>
+
+<% @post.comments.each do |comment| %>
+  <div class="comment">
+    <p><strong><%= comment.user&.email || 'Аноним' %></strong></p>
+    <p><%= comment.body %></p>
+    <% if comment.user == current_user %>
+      <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %>
+    <% end %>
+  </div>
+<% end %>
