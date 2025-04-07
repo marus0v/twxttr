@@ -1,5 +1,6 @@
 <h1><%= @post.title %></h1>
 
+<p>Post by: <strong><%= @post.author.first_name || 'Аноним' %> <%= @post.author.last_name || 'Аноним' %></strong></p>
 <p><%= @post.body %></p>
 
 <ul>

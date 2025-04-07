@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authorize, only: [ :create, :edit, :update, :destroy ]
+  before_action :require_login, only: [ :create, :edit, :update, :destroy ]
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
   before_action :check_owner, only: [ :edit, :update, :destroy ]
 
