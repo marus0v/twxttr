@@ -1,4 +1,4 @@
-<% unless comment.archived? %>
+<!-- <% unless comment.archived? %>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
@@ -12,14 +12,17 @@
     <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
   </p>
   <br>
-<% end %>
+<% end %> -->
 
-<% @post.comments.each do |comment| %>
-  <div class="comment">
-    <p><strong><%= comment.user&.email || 'Аноним' %></strong></p>
-    <p><%= comment.body %></p>
-    <% if comment.user == current_user %>
-      <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %>
-    <% end %>
-  </div>
+<% unless comment.archived? %>
+  <% @post.comments.each do |comment| %>
+    <div class="comment">
+      <p><strong><%= comment.author&.first_name || 'Аноним' %> <%= comment.author&.last_name || 'Аноним' %> comments:</strong></p>
+      <p><%= comment.body %></p>
+      <% if comment.author == current_user %>
+        <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+        <!-- <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %> -->
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

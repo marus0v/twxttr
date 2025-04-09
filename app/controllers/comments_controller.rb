@@ -3,13 +3,15 @@ class CommentsController < ApplicationController
   # before_action :authorize, only: [:create, :destroy]
   # before_action :set_comment, only: [:show, :edit, :update, :destroy]
   # before_action :set_comment, only: [:destroy]
-  before_action :authorize, only: [ :create, :destroy ]
+  before_action :require_login, only: [ :create, :destroy ]
   before_action :set_post, only: [ :create, :destroy ]
   before_action :set_comment, only: [ :destroy ]
   before_action :check_comment_owner, only: [ :destroy ]
 
   def create
-    @comment = @post.comments.new(comment_params.merge(author_id: current_user))
+    # @comment = @post.comments.new(comment_params.merge(author_id: current_user))
+    @comment = @post.comments.new(comment_params)
+    @comment.author = current_user
 
     if @comment.save
       redirect_to @post, notice: "Comment was successfully created."
@@ -67,7 +69,7 @@ class CommentsController < ApplicationController
     end
 
     def check_comment_owner
-      unless @comment.user == current_user
+      unless @comment.author == current_user
         redirect_to @post, alert: "You can only delete your own comments."
       end
     end
