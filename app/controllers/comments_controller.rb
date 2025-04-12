@@ -1,8 +1,4 @@
 class CommentsController < ApplicationController
-  # before_action :authorize, only: [:create, :edit, :update, :destroy]
-  # before_action :authorize, only: [:create, :destroy]
-  # before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  # before_action :set_comment, only: [:destroy]
   before_action :require_login, only: [ :create, :destroy ]
   before_action :set_post, only: [ :create, :destroy ]
   before_action :set_comment, only: [ :destroy ]
@@ -11,6 +7,7 @@ class CommentsController < ApplicationController
   def create
     # @comment = @post.comments.new(comment_params.merge(author_id: current_user))
     @comment = @post.comments.new(comment_params)
+    # binding.irb
     @comment.author = current_user
 
     if @comment.save
