@@ -1,25 +1,11 @@
 <% unless comment.archived? %>
   <div class="comment">
-      <p><strong><%= comment.author&.first_name || 'Аноним' %> <%= comment.author&.last_name || 'Аноним' %> comments:</strong></p>
-      <p><%= comment.body %></p>
-      <% if comment.author == current_user %>
-        <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
-        <!-- <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %> -->
-      <% end %>
-    </div>
-  <!-- <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-  <p>
-    <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
-  </p>
-  <br> -->
+    <p><strong><%= comment.author&.first_name || 'Аноним' %> <%= comment.author&.last_name || 'Аноним' %> comments:</strong></p>
+    <p><%= comment.body %></p>
+    <% if comment.author == current_user %>
+      <%= button_to "Destroy Comment", [comment.post, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+    <% end %>
+  </div>
 <% end %>
 
 <!-- <% unless comment.archived? %>
