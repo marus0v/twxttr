@@ -20,6 +20,9 @@ TWXTTR has <%= Post.public_count %> posts and counting!
     <td>
       <p>Превью</p>
     </td>
+    <td>
+      <p>Действия</p>
+    </td>
   </tr>
 
   <% @posts = Post.order(created_at: :desc) %>
@@ -32,6 +35,19 @@ TWXTTR has <%= Post.public_count %> posts and counting!
       </td>
       <td>
         <%= link_to post.title, post %>
+      </td>
+      <td>
+        <% if post.body.length > 50 %>
+        <%= post.body.to_s[0..50] + "..." %>
+        <% else %>
+        <%= post.body %>
+        <% end %>
+      </td>
+      <td>
+        <% if post.author.present? && post.author == current_user %>
+        <%= link_to "Edit", edit_post_path(post) %>
+        <%= link_to "Destroy", post_path(post), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+        <% end %>
       </td>
     </tr>
     <% end %>
