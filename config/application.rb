@@ -6,6 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ENV['PATH'] = "C:\\vips-dev-8.16\\bin;#{ENV['PATH']}"
+
 module Twxttr
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -23,5 +25,7 @@ module Twxttr
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.active_storage.variant_processor = :vips
+
   end
 end

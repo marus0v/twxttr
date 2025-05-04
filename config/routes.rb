@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     resources :comments, only: [ :create, :edit, :update, :destroy ]
   end
 
+  get "/stories", to: redirect("/posts")
+
+  get "easter", to: "posts#show", id: 2, as: "easter"
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

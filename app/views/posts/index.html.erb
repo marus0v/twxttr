@@ -1,15 +1,45 @@
 <h1>Posts</h1>
 
+<table>
+  <tr>
+    <td>
 TWXTTR has <%= Post.public_count %> posts and counting!
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Дата поста</p>
+    </td>
+    <td>
+      <p>Заголовок</p>
+    </td>
+    <td>
+      <p>Превью</p>
+    </td>
+  </tr>
 
-<ul>
+  <% @posts = Post.order(created_at: :desc) %>
+  
   <% @posts.each do |post| %>
     <% unless post.archived? %>
-      <li>
+    <tr>
+      <td>
+      <p><%= post.created_at %></p>
+      </td>
+      <td>
         <%= link_to post.title, post %>
-      </li>
+      </td>
+    </tr>
     <% end %>
   <% end %>
-</ul>
+<tr>
+    <td>
+    </td>
+  </tr>
+</table>
 
 <%= link_to "New Post", new_post_path %>

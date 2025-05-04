@@ -1,7 +1,21 @@
 <h1><%= @post.title %></h1>
 
 <p>Post by: <strong><%= @post.author.first_name || 'Аноним' %> <%= @post.author.last_name || 'Аноним' %></strong></p>
+<% if @post.author.avatar.attached? %>
+  <%= image_tag @post.author.avatar, width: 200 %>
+  <!--<%= image_tag @post.author.avatar.variant(resize_to_limit: [300, 300]) %> -->
+<% else %>
+  <p>Аватар не загружен</p>
+<% end %>
 <p><%= @post.body %></p>
+
+<% if @post.images.attached? %>
+  <% @post.images.each do |img| %>
+    <%= image_tag img, width: 500 %>
+  <% end %>
+<% else %>
+  <p>Картинка не загружена</p>
+<% end %>
 
 <ul>
   <li><%= link_to "Edit", edit_post_path(@post) %></li>

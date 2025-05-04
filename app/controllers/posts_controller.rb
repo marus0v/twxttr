@@ -52,12 +52,12 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :status)
+      params.require(:post).permit(:title, :body, :status, images: [])
     end
 
-    def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-    end
+  #  def current_user
+  #    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  #  end
 
     def check_owner
       unless @post.author == current_user

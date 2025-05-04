@@ -16,6 +16,11 @@
   </div>
 
   <div>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div>
     <%= form.label :status %><br>
     <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
   </div>
